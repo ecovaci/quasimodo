@@ -845,7 +845,7 @@ public class MainFrame extends JFrame implements FormView<MainFrameModel> , Desi
 	    @Override
 	    public boolean dispatchKeyEvent(KeyEvent e) {
 	        if (e.getID() == KeyEvent.KEY_PRESSED) {
-	        	System.out.println("key pressed " + e.getID());
+	        	//System.out.println("key pressed " + e.getID());
 				if (context.existCurrentGame() 
 						&& !context.hasActiveGame()) {
 					if (e.getKeyCode() == KeyEvent.VK_LEFT) {

@@ -47,7 +47,7 @@ public class PromotionDialog implements FormView<PromotionDialogModel> {
 	
 	@Autowired
 	private BoardPanel boardPanel;
-	
+
 	private JOptionPane optionPane;
 	private JDialog dialog;
 	private ButtonGroup buttonGroup;

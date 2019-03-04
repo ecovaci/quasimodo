@@ -59,7 +59,7 @@ public class Config {
 	@Value("file:${user.home}/.quasimodo/user.prefs")
 	private Resource userPrefs;
 	
-	@Value("file:${user.home}/.quasimodo/database/eco_db.h2.db")
+	@Value("file:${user.home}/.quasimodo/database/eco.h2.db")
 	private Resource ecoFile;
 	
 	@Value("file:${user.home}/.quasimodo/config.properties")

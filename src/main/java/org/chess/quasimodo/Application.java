@@ -39,11 +39,14 @@
  */
 package org.chess.quasimodo;
 
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
@@ -248,9 +251,33 @@ public class Application implements ApplicationContextAware {
     	if (context.existCurrentGame()) {
     		context.getCurrentGame().stop(Game.Status.UNDECIDED);
     	}
+
     	engineRepository.closeEngines();
-    	springContext.close();
+
+		frame.dispose();
+
+		whitePromotionDialog ().dispose();
+
+		blackPromotionDialog ().dispose();
+
+		springContext.close();
+
     	logger.info("Application stopped at: " + new Date());
+
+/*		try {
+			Thread.sleep(3000L);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}*/
+
+		/*Arrays.stream(Window.getWindows()).forEach(w -> {
+			System.out.println(w); if (w.getClass().equals(javax.swing.JDialog.class)) w.dispose();});*/
+
+		// For debugging only!!!
+/*		Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+		threadSet.forEach(t -> {
+			if(!t.isDaemon() && t.isAlive())
+				System.out.println(t.getName());});*/
     }   
     
     public void launch (String[] args) {

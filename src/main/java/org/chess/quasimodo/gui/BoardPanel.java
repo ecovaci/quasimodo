@@ -406,9 +406,9 @@ public class BoardPanel extends JPanel implements MoveSource, PiecesChangedAware
 								//this might be a time expensive operation!!!
 								new RequestMoveThread(moveFrom, moveTo, errorHandler).start();
 							}
-							if (context.getCurrentGame().isSoundRequired()) {
+							/*if (context.getCurrentGame().isSoundRequired()) {
 								soundUtils.playAudio();//FIXME - for testing only
-							}
+							}*/
 						}
 						break outter;
 					}
@@ -551,14 +551,17 @@ public class BoardPanel extends JPanel implements MoveSource, PiecesChangedAware
 		//************* antialiasing on  *************//
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		//********************************************//
+
 		//**************** Draw border ***************//
 		g2.setColor(borderColor);
 		g2.setStroke(borderStroke);
 		g2.drawRect(tableOffset + borderThick / 2, tableOffset + borderThick / 2, 
 				tableSquareSize * 8 + borderThick, tableSquareSize * 8 + borderThick);
+
 		//************* antialiasing off *************//
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_OFF);
 		//********************************************//
+
 		//************** Draw table ******************//
 		for (int i = 0;i < 8;i++) {
 			for (int j = 0;j < 8;j++) {
@@ -577,6 +580,7 @@ public class BoardPanel extends JPanel implements MoveSource, PiecesChangedAware
 			}
 		}
 		//********************************************//
+
 		//********** Highlight move squares **********//
 		g2.setColor(highlightMoveColor);
 		g2.setStroke(highlightMoveStroke);

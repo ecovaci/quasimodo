@@ -32,13 +32,15 @@ import org.apache.commons.logging.LogFactory;
 import org.chess.quasimodo.errors.EngineException;
 import org.chess.quasimodo.event.EngineOutputListener;
 import org.chess.quasimodo.event.PlayerReadyAware;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 
 public class EnginePlugin {
-	private Log logger = LogFactory.getLog(EnginePlugin.class);
+	private Logger logger = LoggerFactory.getLogger(EnginePlugin.class);
 	
 	private final BufferedReader input;
     private final BufferedWriter output;
@@ -55,7 +57,8 @@ public class EnginePlugin {
 	protected EnginePlugin(Process process, int threadPriority) {
 		this.input = new BufferedReader(new InputStreamReader(process.getInputStream()));
 		this.output = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
-		(executor = new SimpleAsyncTaskExecutor()).setConcurrencyLimit(1);
+		executor = new SimpleAsyncTaskExecutor();
+		executor.setConcurrencyLimit(1);
 		executor.setThreadPriority(threadPriority);
 	}
 	
@@ -118,7 +121,7 @@ public class EnginePlugin {
 		try {
 			result.get();
 		} catch (Exception e) {
-			logger.error(e, e);
+			logger.error("", e);
 			throw new EngineException(e);
 		}
 	}
@@ -141,7 +144,7 @@ public class EnginePlugin {
 		try {
 			result.get();
 		} catch (Exception e) {
-			logger.error(e, e);
+			logger.error("", e);
 			throw new EngineException(e);
 		}
 	}
@@ -215,13 +218,14 @@ public class EnginePlugin {
 				logger.info("Now start reading response");
 				String line;
 				while (running && (line = input.readLine()) != null) {
+					logger.info("Line: [" + line + "]");
 					outputListener.onReceiveLine(line);
 					if (stopCondition != null && line.startsWith(stopCondition)) {
 					    break;
 					}
 				}
 			} catch (Exception e) {
-				logger.error(e, e);
+				logger.error("", e);
 				outputListener.onReceiveLine("ERROR - Cannot listen to engine's output");
 				throw e;
 			} finally {
