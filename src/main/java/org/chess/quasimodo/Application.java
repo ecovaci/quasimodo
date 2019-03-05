@@ -248,6 +248,7 @@ public class Application implements ApplicationContextAware {
     	//disconect from fics (if connected)
 		//stop engines
     	//etc
+
     	if (context.existCurrentGame()) {
     		context.getCurrentGame().stop(Game.Status.UNDECIDED);
     	}

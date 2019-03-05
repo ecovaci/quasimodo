@@ -216,12 +216,8 @@ public class Notation implements Designable {//TODO - variations,  retroactively
 	
 	private void notifyView () {
 		notationChangedAware.notationContentChanged(toHTML(),
-				                                    new HyperlinkEvent( 
-				                                		   this, 
-				                                		   EventType.ACTIVATED, 
-				                                		   null, 
-				                                		   "" ,  
-				                                		   new CustomTextElement()));
+				                                    new HyperlinkEvent(this, EventType.ACTIVATED, null,
+				                                		   "" , new CustomTextElement()));
 	}
 	
 	private String toHTML () {

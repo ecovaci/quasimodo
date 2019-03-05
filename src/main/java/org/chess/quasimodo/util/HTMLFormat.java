@@ -26,7 +26,7 @@ public class HTMLFormat {
 	public static final String PARAGRAPH_PATTERN   = "<span style=\"vertical-align:top;font-family:{1};font-size:{2}pt;font-weight:bold\">{0}</span>";
 	public static final String HTML_PATTERN        = "<html>{0}</html>";
 	public static final String FONT_PATTERN        = "<font face=\"{1}\" color=\"{2}\">{0}</font>";
-	public static final String HYPERLINK_PATTERN   = "<a href=\"gopher:{0}\" style=\"text-decoration:none;font-size:{2}pt;font-weight:{3}\">{1}</a>";
+	public static final String HYPERLINK_PATTERN   = "<a href=\"http://{0}\" style=\"text-decoration:none;font-size:{2}pt;font-weight:{3}\">{1}</a>";
     
     public static String toHTMLDocument (String content) {
     	return MessageFormat.format(HTML_PATTERN, content != null ? content : "") ;
